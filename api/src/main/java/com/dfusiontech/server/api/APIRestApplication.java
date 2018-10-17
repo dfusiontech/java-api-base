@@ -34,7 +34,7 @@ import java.net.UnknownHostException;
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class, JacksonAutoConfiguration.class})
 @ComponentScan(basePackages = {"com.dfusiontech"})
 @EnableJpaRepositories(basePackages = {"com.dfusiontech.server.repository"}, repositoryBaseClass = CoreRepositoryImpl.class)
-@EntityScan(basePackages = {"com.kpsys.server.model"})
+@EntityScan(basePackages = {"com.dfusiontech.server.model"})
 @EnableJpaAuditing
 @EnableAsync
 @EnableScheduling
@@ -82,13 +82,14 @@ public class APIRestApplication extends SpringBootServletInitializer {
 
 		String logoString = "\n\n\n\n" +
 			" \n" +
-			"    dMMMMb  .aMMMb  dMMMMb  dMP dMP dMP dMMMMb  .aMMMMP       .aMMMMP dMP dMP dMMMMb  dMP dMP        .aMMMb  dMMMMb  dMMMMb  dMMMMb \n" +
-			"   dMP.dMP dMP\"dMP dMP.dMP dMP.dMP amr dMP dMP dMP\"          dMP\"    dMP dMP dMP.dMP dMP dMP        dMP\"dMP dMP dMP dMP.dMP dMP.dMP \n" +
-			"  dMMMMP\" dMMMMMP dMMMMK\" dMMMMK\" dMP dMP dMP dMP MMP\"      dMP MMP\"dMP dMP dMMMMK\" dMP dMP        dMMMMMP dMP dMP dMMMMP\" dMMMMK\"  \n" +
-			" dMP     dMP dMP dMP\"AMF dMP\"AMF dMP dMP dMP dMP.dMP       dMP.dMP dMP.aMP dMP\"AMF dMP.aMP        dMP dMP dMP dMP dMP     dMP\"AMF   \n" +
-			"dMP     dMP dMP dMP dMP dMP dMP dMP dMP dMP  VMMMP\"        VMMMP\"  VMMMP\" dMP dMP  VMMMP\"        dMP dMP dMP dMP dMP     dMP dMP    \n" +
+			"     .aMMMb   dMMMMb   dMP\n" +
+			"    dMP\"dMP  dMP.dMP  dMP\n" +
+			"   dMMMMMP  dMMMMP\"  dMP\n" +
+			"  dMP dMP  dMP      dMP  \n" +
+			" dMP dMP  dMP      dMP  dM " +
 			" \n" +
-			"\t\t{}, v.-{}\n" +
+			" \n" +
+			"\t{}, v.-{}\n" +
 			"============================================================================================= \n" +
 			" Startup Info:\n" +
 			" Local: \thttp://127.0.0.1:{}\n" +

@@ -6,14 +6,15 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.DispatcherServlet;
 
 /**
  * Base Spring Application Configuration.
  *
- * @author Eugene A. Kalosha <ekalosha@dfusiontech.com>
+ * @author   Eugene A. Kalosha <ekalosha@dfusiontech.com>
+ * @version  1.11.1
+ * @since    2018-10-17
  */
 @Configuration
 @ComponentScan(basePackages = "com.dfusiontech")

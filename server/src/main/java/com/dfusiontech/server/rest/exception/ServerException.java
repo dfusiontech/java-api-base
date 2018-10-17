@@ -8,7 +8,9 @@ import lombok.Setter;
 /**
  * General exception to be treated as SERVER_EXCEPTION.
  *
- * @author Eugene A. Kalosha <ekalosha@dfusiontech.com>
+ * @author   Eugene A. Kalosha <ekalosha@dfusiontech.com>
+ * @version  1.11.1
+ * @since    2018-10-17
  */
 @Setter
 @Getter

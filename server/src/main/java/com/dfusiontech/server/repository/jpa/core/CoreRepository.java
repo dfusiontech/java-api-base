@@ -16,7 +16,10 @@ import java.util.Map;
  *
  * @param <T>
  * @param <ID>
+ *
  * @author Eugene A. Kalosha <ekalosha@dfusiontech.com>
+ * @version  1.11.1
+ * @since    2018-10-17
  */
 @NoRepositoryBean
 public interface CoreRepository<T, ID extends Serializable> extends PagingAndSortingRepository<T, ID>, JpaSpecificationExecutor<T> {

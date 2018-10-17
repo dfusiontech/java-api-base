@@ -17,9 +17,11 @@ import java.util.Map;
 /**
  * Base implementation of JPA repositories, based on current EntityManager instance.
  *
- * @author Eugene A. Kalosha <ekalosha@dfusiontech.com>
  * @param <T>
  * @param <ID>
+ * @author   Eugene A. Kalosha <ekalosha@dfusiontech.com>
+ * @version  1.11.1
+ * @since    2018-10-17
  */
 public class CoreRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements CoreRepository<T, ID> {
 

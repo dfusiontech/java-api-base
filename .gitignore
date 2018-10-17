@@ -26,5 +26,10 @@ hs_err_pid*
 api-base.iml
 
 api/api-application\.iml
-
 server/server\.iml
+
+# Ignore Maven Target Directories
+api/target/
+server/target/
+
+api/src/main/resources/application-ekalosha\.properties
