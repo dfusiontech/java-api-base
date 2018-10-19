@@ -1,6 +1,7 @@
 package com.dfusiontech.server.config;
 
 import com.dfusiontech.server.rest.ApplicationProperties;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -50,6 +51,16 @@ public class CoreApplicationConfig {
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		return builder.build();
+	}
+
+	/**
+	 * Initialize Model Mapper
+	 *
+	 * @return
+	 */
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
 	}
 
 }

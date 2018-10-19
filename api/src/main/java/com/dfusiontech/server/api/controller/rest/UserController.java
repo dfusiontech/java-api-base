@@ -1,5 +1,6 @@
 package com.dfusiontech.server.api.controller.rest;
 
+import com.dfusiontech.server.model.dto.UsersDTO;
 import com.dfusiontech.server.model.jpa.entity.UsersEntity;
 import com.dfusiontech.server.repository.jpa.UserRepository;
 import com.dfusiontech.server.rest.ApplicationProperties;
@@ -34,10 +35,12 @@ public class UserController {
 	 */
 	@Produces(MediaType.APPLICATION_JSON)
 	@RequestMapping(method = RequestMethod.GET, value = "/list", name = "Get Users List")
-	public String getUsersList() {
+	public List<UsersDTO> getUsersList() {
 		List<UsersEntity> items = userRepository.findAll();
 
-		return "";
+		List<UsersDTO> usersDTOList = (List<UsersDTO>) (new UsersDTO()).fromEntitiesList(items);
+
+		return usersDTOList;
 	}
 
 }

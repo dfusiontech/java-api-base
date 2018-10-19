@@ -7,6 +7,13 @@ import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+/**
+ * User Entity Definition
+ *
+ * @author Eugene A. Kalosha <ekalosha@dfusiontech.com>
+ * @version  1.11.1
+ * @since    2018-10-17
+ */
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
@@ -14,6 +21,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Setter
 @Getter
 @ToString(of = {"id", "email"})
+@EqualsAndHashCode(of = {"id", "email"})
 public class UsersEntity {
 
 	@Id
