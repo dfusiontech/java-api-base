@@ -13,11 +13,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.Contact;
+import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger.web.SecurityConfiguration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Configuration
 @EnableSwagger2
@@ -25,6 +29,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig extends WebMvcConfigurerAdapter {
 
 	private final ApplicationProperties properties;
+
+	private String clientId = "username";
+
+	private String clientSecret = "password";
 
 	@Autowired
 	public SwaggerConfig(ApplicationProperties properties) {
@@ -55,6 +63,7 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
 			.pathMapping("/")
 			.directModelSubstitute(DateTime.class, String.class)
 			.directModelSubstitute(Enum.class, String.class)
+			.securitySchemes(Collections.singletonList(securitySchema()))
 			.apiInfo(
 				new ApiInfoBuilder()
 					.title("Core API")
@@ -75,5 +84,27 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
 	public SecurityConfiguration securityConfiguration() {
 		return new SwaggerSecurityConfig(HttpHeaders.AUTHORIZATION);
 	}
+
+	/**
+	 * OAuth Security Schema
+	 *
+	 * @return
+	 */
+	private OAuth securitySchema() {
+
+		List<AuthorizationScope> authorizationScopeList = new ArrayList<>();
+		authorizationScopeList.add(new AuthorizationScope("global", "access all"));
+
+		List<GrantType> grantTypes = new ArrayList();
+		final TokenRequestEndpoint tokenRequestEndpoint = new TokenRequestEndpoint("http://localhost:28180/oauth/token", clientId, clientSecret);
+		final TokenEndpoint tokenEndpoint = new TokenEndpoint("http://localhost:28180/oauth/token", "access_token");
+		AuthorizationCodeGrant authorizationCodeGrant = new AuthorizationCodeGrant(tokenRequestEndpoint, tokenEndpoint);
+		grantTypes.add(authorizationCodeGrant);
+
+		OAuth oAuth = new OAuth("oauth", authorizationScopeList, grantTypes);
+
+		return oAuth;
+	}
+
 
 }

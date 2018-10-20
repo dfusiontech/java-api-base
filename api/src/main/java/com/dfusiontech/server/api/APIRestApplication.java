@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration;
@@ -31,7 +32,7 @@ import java.net.UnknownHostException;
  *
  * @author Eugene A. Kalosha <ekalosha@dfusiontech.com>
  */
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class, JacksonAutoConfiguration.class})
+// @SpringBootApplication(exclude = {SecurityAutoConfiguration.class, JacksonAutoConfiguration.class})
 @ComponentScan(basePackages = {"com.dfusiontech"})
 @EnableJpaRepositories(basePackages = {"com.dfusiontech.server.repository"}, repositoryBaseClass = CoreRepositoryImpl.class)
 @EntityScan(basePackages = {"com.dfusiontech.server.model"})

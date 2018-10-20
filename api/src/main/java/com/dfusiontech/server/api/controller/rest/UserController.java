@@ -1,9 +1,9 @@
 package com.dfusiontech.server.api.controller.rest;
 
-import com.dfusiontech.server.model.dto.UsersDTO;
+import com.dfusiontech.server.model.dto.user.UserDTO;
+import com.dfusiontech.server.model.dto.user.UserSmallDTO;
 import com.dfusiontech.server.model.jpa.entity.UsersEntity;
 import com.dfusiontech.server.repository.jpa.UserRepository;
-import com.dfusiontech.server.rest.ApplicationProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,10 +35,10 @@ public class UserController {
 	 */
 	@Produces(MediaType.APPLICATION_JSON)
 	@RequestMapping(method = RequestMethod.GET, value = "/list", name = "Get Users List")
-	public List<UsersDTO> getUsersList() {
+	public List<UserSmallDTO> getUsersList() {
 		List<UsersEntity> items = userRepository.findAll();
 
-		List<UsersDTO> usersDTOList = (List<UsersDTO>) (new UsersDTO()).fromEntitiesList(items);
+		List<UserSmallDTO> usersDTOList = (List<UserSmallDTO>) (new UserSmallDTO()).fromEntitiesList(items);
 
 		return usersDTOList;
 	}

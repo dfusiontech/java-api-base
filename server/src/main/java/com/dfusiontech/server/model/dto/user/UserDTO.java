@@ -1,5 +1,6 @@
-package com.dfusiontech.server.model.dto;
+package com.dfusiontech.server.model.dto.user;
 
+import com.dfusiontech.server.model.dto.DTOBase;
 import com.dfusiontech.server.model.jpa.entity.UsersEntity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,7 +20,7 @@ import java.util.Date;
 @Getter
 @ToString(of = {"id", "email"})
 @EqualsAndHashCode(of = {"id", "email"})
-public class UsersDTO extends DTOBase<UsersEntity> {
+public class UserDTO extends DTOBase<UsersEntity> {
 
 	private Integer id;
 	private String email;
