@@ -5,6 +5,8 @@ import com.dfusiontech.server.model.dto.user.UserSmallDTO;
 import com.dfusiontech.server.model.jpa.entity.UsersEntity;
 import com.dfusiontech.server.repository.jpa.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,6 +39,8 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.GET, value = "/list", name = "Get Users List")
 	public List<UserSmallDTO> getUsersList() {
 		List<UsersEntity> items = userRepository.findAll();
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
 		List<UserSmallDTO> usersDTOList = (List<UserSmallDTO>) (new UserSmallDTO()).fromEntitiesList(items);
 

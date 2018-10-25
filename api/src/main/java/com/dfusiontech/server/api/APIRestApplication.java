@@ -32,7 +32,7 @@ import java.net.UnknownHostException;
  *
  * @author Eugene A. Kalosha <ekalosha@dfusiontech.com>
  */
-// @SpringBootApplication(exclude = {SecurityAutoConfiguration.class, JacksonAutoConfiguration.class})
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class, JacksonAutoConfiguration.class})
 @ComponentScan(basePackages = {"com.dfusiontech"})
 @EnableJpaRepositories(basePackages = {"com.dfusiontech.server.repository"}, repositoryBaseClass = CoreRepositoryImpl.class)
 @EntityScan(basePackages = {"com.dfusiontech.server.model"})

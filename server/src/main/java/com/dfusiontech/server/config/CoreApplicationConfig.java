@@ -45,6 +45,7 @@ public class CoreApplicationConfig {
 
 	/**
 	 * Config for rest template
+	 *
 	 * @param builder
 	 * @return
 	 */

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -32,26 +33,21 @@ import java.util.Collections;
  */
 @Configuration
 @EnableAuthorizationServer
+@Order(100)
 public class SecurityOAuth2Config extends AuthorizationServerConfigurerAdapter {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
 	@Autowired
-	private DataSource dataSource;
+	private TokenStore tokenStore;
 
 	@Autowired
 	private UserDetailsService userDetailsService;
 
-	@Bean
-	public TokenStore tokenStore() {
-		return new JdbcTokenStore(dataSource);
-	}
-
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
 		oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
-		// oauthServer.allowFormAuthenticationForClients();
 	}
 
 	/**
@@ -91,27 +87,8 @@ public class SecurityOAuth2Config extends AuthorizationServerConfigurerAdapter {
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		endpoints.authenticationManager(authenticationManager);
-		endpoints.tokenStore(tokenStore());
+		endpoints.tokenStore(tokenStore);
 		endpoints.userDetailsService(userDetailsService);
 	}
-
-	/**
-	 * Create Token Services
-	 *
-	 * @return
-	 */
-	/*
-	@Bean
-	@Primary
-	public DefaultTokenServices tokenServices() {
-
-		DefaultTokenServices tokenServices = new DefaultTokenServices();
-		tokenServices.setSupportRefreshToken(true);
-		tokenServices.setReuseRefreshToken(true);
-		tokenServices.setTokenStore(tokenStore());
-
-		return tokenServices;
-	}
-	*/
 
 }

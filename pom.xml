@@ -72,6 +72,7 @@
 		<springfox.version>2.9.2</springfox.version>
 
 		<apache.commons-lang3.version>3.7</apache.commons-lang3.version>
+		<apache.commons-codec.version>1.11</apache.commons-codec.version>
 		<modelmapper.version>2.3.0</modelmapper.version>
 
 		<maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>

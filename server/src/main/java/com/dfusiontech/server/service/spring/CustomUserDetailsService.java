@@ -1,11 +1,11 @@
 package com.dfusiontech.server.service.spring;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import java.util.Collection;
 import java.util.Collections;
 
 /**
@@ -15,7 +15,12 @@ import java.util.Collections;
  * @version  1.11.1
  * @since    2018-10-20
  */
+@Slf4j
 public class CustomUserDetailsService implements UserDetailsService {
+
+	public CustomUserDetailsService() {
+		log.info("#### CustomUserDetailsService. Initialize.");
+	}
 
 	/**
 	 * Load User Details by its Primary username
