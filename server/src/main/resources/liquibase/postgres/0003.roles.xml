@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0001-create-users-table" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE roles
+			(
+				id serial,
+				name character varying (8) NOT NULL,
+				description character varying (65) DEFAULT NULL,
+				CONSTRAINT roles_pk PRIMARY KEY (id)
+			);
+
+			CREATE UNIQUE INDEX ui_roles_name ON roles (name);
+
+			INSERT INTO roles (id, name, description) VALUES (1, 'ADMIN', 'System Administrators');
+			-- INSERT INTO roles (id, name, description) VALUES (2, 'ANONYMOUS', 'Anonymous users');
+			INSERT INTO roles (id, name, description) VALUES (4, 'USER', 'Users of the system');
+		</sql>
+
+		<rollback>
+			<dropTable tableName="users"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

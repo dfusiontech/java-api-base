@@ -1,5 +1,6 @@
 package com.dfusiontech.server.config;
 
+import com.dfusiontech.server.service.spring.CustomJdbcUserDetailsManager;
 import com.dfusiontech.server.service.spring.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +10,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 
 import javax.sql.DataSource;
 
@@ -40,6 +43,16 @@ public class CoreSecurityConfig {
 		 * Create DEFAULT BCRYPT Password Encoder from Spring Security
 		 */
 		return new BCryptPasswordEncoder();
+	}
+
+	/**
+	 * Jdbc User Details Manager definition.
+	 *
+	 * @return
+	 */
+	@Bean
+	public JdbcUserDetailsManager jdbcUserDetailsManager() {
+		return new CustomJdbcUserDetailsManager();
 	}
 
 	/**

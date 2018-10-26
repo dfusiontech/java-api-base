@@ -1,7 +1,10 @@
 package com.dfusiontech.server.api.controller.rest;
 
 import com.dfusiontech.server.rest.ApplicationProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,11 +19,16 @@ import javax.ws.rs.core.MediaType;
 	name = "Common Info"
 )
 // @Api(value = "Info", description = "Info about the platform.")
+@Slf4j
 public class InfoController {
 
 	static final String CONTROLLER_URI = "/api/rest/info";
-	private static final String API_SIGNATURE = "20180228";
-	private static final String API_BUILD_VERSION = "ANPR, v. 0.1.5";
+
+	@Value("${info.app.signature}")
+	private String API_SIGNATURE;
+
+	@Value("${info.app.version}")
+	private String API_BUILD_VERSION;
 
 	@Autowired
 	private ApplicationProperties applicationProperties;
@@ -31,9 +39,7 @@ public class InfoController {
 	 *
 	 * @return build version
 	 */
-	// @ApiOperation(value = "Get API version")
-	@Produces(MediaType.TEXT_PLAIN)
-	@RequestMapping(method = RequestMethod.GET, value = "/version", name = "Get API version")
+	@RequestMapping(method = RequestMethod.GET, value = "/version", name = "Get API version", produces = MediaType.TEXT_PLAIN)
 	public String getAPIVersion() {
 		return API_BUILD_VERSION;
 	}
@@ -43,9 +49,7 @@ public class InfoController {
 	 *
 	 * @return signature
 	 */
-	// @ApiOperation(value = "Get API signature")
-	@Produces(MediaType.TEXT_PLAIN)
-	@RequestMapping(method = RequestMethod.GET, value = "/signature")
+	@RequestMapping(method = RequestMethod.GET, value = "/signature", produces = MediaType.TEXT_PLAIN)
 	public String getAPISignature() {
 		return API_SIGNATURE;
 	}

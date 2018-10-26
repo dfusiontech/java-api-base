@@ -6,13 +6,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configurers.provisioning.JdbcUserDetailsManagerConfigurer;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.security.web.server.SecurityWebFilterChain;
 
 /**
  * Spring Application Security Configuration.
@@ -24,11 +30,20 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	// private final PasswordEncoder passwordEncoder;
+	private final PasswordEncoder passwordEncoder;
 
+	private final JdbcUserDetailsManager jdbcUserDetailsManager;
+
+	/**
+	 * Default Bean constructor
+	 *
+	 * @param jdbcUserDetailsManager
+	 * @param passwordEncoder
+	 */
 	@Autowired
-	public WebSecurityConfig() {
-		// this.passwordEncoder = passwordEncoder;
+	public WebSecurityConfig(final JdbcUserDetailsManager jdbcUserDetailsManager, final PasswordEncoder passwordEncoder) {
+		this.jdbcUserDetailsManager = jdbcUserDetailsManager;
+		this.passwordEncoder = passwordEncoder;
 	}
 
 
@@ -54,20 +69,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-		// Set In-Memory Authorization with Static Users
-		auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance())
-			.withUser("ekalosha@gmail.com").password("password").roles("USER")
-			.and()
-			.withUser("ekalosha2").password("password2").roles("USER", "ADMIN")
-			.and()
-			.withUser("ekalosha3").password("password3").roles("USER")
-			.and()
-			.withUser("ekalosha4").password("password4").roles("USER")
-			.and()
-			.withUser("ekalosha5").password("password5").roles("USER");
+		// Set Authorization with Database Users with BCrypt password encoder.
+		auth.apply(new JdbcUserDetailsManagerConfigurer<>(jdbcUserDetailsManager)).passwordEncoder(passwordEncoder);
 
 		// TODO Remove duplicates
-		auth.userDetailsService(userDetailsService());
+		// auth.userDetailsService(userDetailsService());
 	}
 
 	/**
@@ -79,31 +85,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		// Disable basic authorization
-		// http.csrf().disable();
-		// http.httpBasic().disable();
-		// http.formLogin().disable();
-
 		// Disable Sessions for API Application
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).sessionFixation().none();
-
-		// http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN");
 
 		http
 			.antMatcher("/**")
 			.authorizeRequests()
-			.antMatchers("/", "/login**", "/swagger**", "/swagger/**",
-				"/webjars/springfox-swagger-ui/**", "/swagger-resources/**", "/csrf"
-				, "/oauth/**"
+			.antMatchers(
+				"/",
+				"/login**",
+				"/swagger**",
+				"/swagger/**",
+				"/webjars/springfox-swagger-ui/**",
+				"/swagger-resources/**",
+				"/csrf",
+				"/oauth/**"
 			)
 			.permitAll();
-			// .anyRequest().authenticated()
-			// .and().csrf().disable();
 
-		// http.authorizeRequests().antMatchers("/api/**").hasRole("USER");
-			//.anyRequest().authenticated();
-
-		// http.anonymous().disable();
+		// Allow actuator enpoints. eg: /health, /info etc.
+		http.authorizeRequests().antMatchers("/actuator/**").permitAll();
 	}
 
 }

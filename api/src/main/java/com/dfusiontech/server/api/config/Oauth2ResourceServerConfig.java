@@ -21,6 +21,9 @@ public class Oauth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
 	public void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 
+
+		http.authorizeRequests().antMatchers("/api/rest/users", "/api/rest/users/**").hasAuthority("ADMIN");
+
 		http.requestMatchers().antMatchers("/api/**")
 			.and()
 			.authorizeRequests()

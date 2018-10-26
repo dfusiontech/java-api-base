@@ -2,6 +2,7 @@ package com.dfusiontech.server.api.config;
 
 import com.dfusiontech.server.service.spring.CustomTokenServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -9,6 +10,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -45,6 +47,15 @@ public class SecurityOAuth2Config extends AuthorizationServerConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	@Value("${application.oauth.client.id}")
+	private String oauthClientId;
+
+	@Value("${application.oauth.client.secret}")
+	private String oauthClientSecret;
+
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
 		oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
@@ -63,8 +74,9 @@ public class SecurityOAuth2Config extends AuthorizationServerConfigurerAdapter {
 			public ClientDetails loadClientByClientId(String s) throws ClientRegistrationException {
 				BaseClientDetails clientDetails = new BaseClientDetails();
 
-				clientDetails.setClientId("com.vrisk");
-				clientDetails.setClientSecret("{noop}21827392bacff");
+				clientDetails.setClientId(oauthClientId);
+				// clientDetails.setClientSecret("{noop}21827392bacff");
+				clientDetails.setClientSecret(passwordEncoder.encode(oauthClientSecret));
 				clientDetails.setAccessTokenValiditySeconds(3600); // Access token to live an hour
 				clientDetails.setRefreshTokenValiditySeconds(2592000); // Refresh token to be valid for 30 days
 				clientDetails.setScope(Arrays.asList("read", "write")); // Scope related to resource server

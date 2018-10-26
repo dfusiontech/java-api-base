@@ -4,6 +4,7 @@
 	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-	<include file="classpath:liquibase/postgres/0001.users.xml" relativeToChangelogFile="false" />
+	<include file="classpath:liquibase/postgres/0001.users_and_roles.xml" relativeToChangelogFile="false" />
+	<include file="classpath:liquibase/postgres/0002.oauth2.xml" relativeToChangelogFile="false" />
 
 </databaseChangeLog>
