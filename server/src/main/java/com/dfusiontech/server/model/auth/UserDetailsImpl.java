@@ -1,6 +1,6 @@
 package com.dfusiontech.server.model.auth;
 
-import com.dfusiontech.server.model.jpa.entity.UsersEntity;
+import com.dfusiontech.server.model.jpa.entity.Users;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.SpringSecurityCoreVersion;
@@ -13,7 +13,7 @@ import java.util.Collection;
 /**
  * Default Spring user abstraction
  *
- * @author Eugene A. Kalosha <ekalosha@dfusiontech.com>
+ * @author   Eugene A. Kalosha <ekalosha@dfusiontech.com>
  * @version  1.11.1
  * @since    2018-10-26
  */
@@ -48,7 +48,7 @@ public class UserDetailsImpl extends User {
 	 *
 	 * @param user
 	 */
-	public UserDetailsImpl(UsersEntity user) {
+	public UserDetailsImpl(Users user) {
 		this(Long.valueOf(user.getId()), user.getEmail(), user.getPassword(), user.getEnabled(), AuthorityUtils.NO_AUTHORITIES);
 	}
 

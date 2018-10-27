@@ -2,6 +2,7 @@ package com.dfusiontech.server.config;
 
 import com.dfusiontech.server.rest.ApplicationProperties;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.NamingConventions;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -61,7 +62,13 @@ public class CoreApplicationConfig {
 	 */
 	@Bean
 	public ModelMapper modelMapper() {
-		return new ModelMapper();
+		ModelMapper modelMapper = new ModelMapper();
+
+		modelMapper.getConfiguration().setFieldMatchingEnabled(true)
+			.setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE)
+			.setSourceNamingConvention(NamingConventions.JAVABEANS_MUTATOR);
+
+		return modelMapper;
 	}
 
 }

@@ -6,5 +6,6 @@
 
 	<include file="classpath:liquibase/postgres/0001.users_and_roles.xml" relativeToChangelogFile="false" />
 	<include file="classpath:liquibase/postgres/0002.oauth2.xml" relativeToChangelogFile="false" />
+	<include file="classpath:liquibase/postgres/0003.users_sequences.xml" relativeToChangelogFile="false" />
 
 </databaseChangeLog>

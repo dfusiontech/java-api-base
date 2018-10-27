@@ -4,21 +4,25 @@ import com.dfusiontech.server.rest.ApplicationProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+/**
+ * Example of controller. Returns Simple INFO
+ *
+ * @author   Eugene A. Kalosha <ekalosha@dfusiontech.com>
+ * @version  1.11.1
+ * @since    2018-10-27
+ */
 @RestController
 @RequestMapping(
 	value = InfoController.CONTROLLER_URI,
 	produces = MediaType.APPLICATION_JSON,
 	name = "Common Info"
 )
-// @Api(value = "Info", description = "Info about the platform.")
 @Slf4j
 public class InfoController {
 

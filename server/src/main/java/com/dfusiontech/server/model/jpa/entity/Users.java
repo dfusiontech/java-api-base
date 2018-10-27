@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -16,34 +18,23 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "users")
-@NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
 @ToString(of = {"id", "email"})
 @EqualsAndHashCode(of = {"id", "email"})
-public class UsersEntity {
+public class Users {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
-	private Integer id;
+	private Long id;
 
 	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 
 	@Column(name = "password")
 	private String password;
-
-	/* enabled boolean default true,
-				expired boolean default true,
-				credentials_expired boolean default true,
-				locked boolean default true,
-				created_at timestamp without time zone NOT NULL DEFAULT now(),
-				updated_at timestamp without time zone NOT NULL DEFAULT now(),
-				expiration_date timestamp without time zone DEFAULT NULL,
-				credentials_expiration_date timestamp without time zone DEFAULT NULL, */
-
 
 	@Column(name = "enabled")
 	private Boolean enabled;
@@ -72,5 +63,23 @@ public class UsersEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "credentials_expiration_date")
 	private Date credentialsExpirationDate;
+
+	@ManyToMany(cascade = {CascadeType.DETACH}, fetch = FetchType.LAZY)
+	@JoinTable(
+		name = "user_roles",
+		joinColumns = {@JoinColumn(name = "user_id")},
+		inverseJoinColumns = {@JoinColumn(name = "role_id")}
+	)
+	Set<Roles> roles = new HashSet<>();
+
+	/**
+	 * Default constructor
+	 */
+	public Users() {
+		enabled = true;
+		expired = false;
+		locked = false;
+		credentialsExpired = false;
+	}
 
 }

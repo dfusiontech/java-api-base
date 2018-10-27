@@ -1,18 +1,16 @@
 package com.dfusiontech.server.model.dto.user;
 
-import com.dfusiontech.server.model.dto.DTOBase;
-import com.dfusiontech.server.model.jpa.entity.UsersEntity;
+import com.dfusiontech.server.model.jpa.entity.Users;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.Date;
-
 /**
  * User Entity Definition
  *
- * @author Eugene A. Kalosha <ekalosha@dfusiontech.com>
+ * @author   Eugene A. Kalosha <ekalosha@dfusiontech.com>
  * @version  1.11.1
  * @since    2018-10-17
  */
@@ -20,9 +18,9 @@ import java.util.Date;
 @Getter
 @ToString(of = {"id", "email"})
 @EqualsAndHashCode(of = {"id", "email"})
-public class UserSmallDTO extends DTOBase<UsersEntity> {
+public class UserUpdateDTO extends UserCreateDTO {
 
-	private Integer id;
-	private String email;
+	@ApiModelProperty(position = 0)
+	private Long id;
 
 }

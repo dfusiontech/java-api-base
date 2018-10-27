@@ -22,12 +22,12 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Getter
 @ToString(of = {"id", "name"})
 @EqualsAndHashCode(of = {"id", "name"})
-public class RolesEntity {
+public class Roles {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
-	private Integer id;
+	private Long id;
 
 	@Column(name = "name", unique = true, nullable = false)
 	private String name;
