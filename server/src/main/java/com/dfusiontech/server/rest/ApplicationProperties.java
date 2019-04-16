@@ -19,4 +19,13 @@ public class ApplicationProperties {
 	@Value("${build.artifactId}")
 	private String buildArtifact;
 
+	@Value("${application.ui.url}")
+	private String uiUrl;
+
+	@Value("${application.admin-ui.url}")
+	private String adminUiUrl;
+
+	@Value("${application.api.url}")
+	private String apiUrl;
+
 }

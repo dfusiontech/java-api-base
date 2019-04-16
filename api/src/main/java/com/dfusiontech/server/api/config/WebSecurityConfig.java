@@ -98,7 +98,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.permitAll();
 
 		// Allow actuator enpoints. eg: /health, /info etc.
-		http.authorizeRequests().antMatchers("/actuator/**").permitAll();
+		http.authorizeRequests().antMatchers("/actuator/**", "/api/info/**", "/api/anonymous/**").permitAll();
 	}
 
 }

@@ -11,7 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
-import org.springframework.security.provisioning.UserDetailsManager;
 
 import javax.sql.DataSource;
 
@@ -19,7 +18,6 @@ import javax.sql.DataSource;
  * Base Spring Application Configuration.
  *
  * @author   Eugene A. Kalosha <ekalosha@dfusiontech.com>
- * @version  1.11.1
  * @since    2018-10-25
  */
 @Configuration
@@ -30,6 +28,12 @@ public class CoreSecurityConfig {
 	 */
 	@Autowired
 	private DataSource dataSource;
+
+	/**
+	 * Include JDBC User Details Manager
+	 */
+	@Autowired
+	private CustomJdbcUserDetailsManager customJdbcUserDetailsManager;
 
 	/**
 	 * PasswordEncoder Bean definition. Used to encode/match passwords.
@@ -52,7 +56,7 @@ public class CoreSecurityConfig {
 	 */
 	@Bean
 	public JdbcUserDetailsManager jdbcUserDetailsManager() {
-		return new CustomJdbcUserDetailsManager();
+		return customJdbcUserDetailsManager;
 	}
 
 	/**

@@ -73,11 +73,13 @@
 
 		<apache.commons-lang3.version>3.7</apache.commons-lang3.version>
 		<apache.commons-codec.version>1.11</apache.commons-codec.version>
+		<apache.commons-io.version>2.6</apache.commons-io.version>
 		<modelmapper.version>2.3.0</modelmapper.version>
 
 		<maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
 
 		<activemq.version>5.15.4</activemq.version>
+		<javax.ws-rs-api.version>2.1.1</javax.ws-rs-api.version>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

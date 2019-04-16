@@ -17,8 +17,19 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ServerException extends RuntimeException {
 
+	/**
+	 * Exception code
+	 */
+	private int code;
+
 	public ServerException(String message) {
 		super(message);
+	}
+
+	public ServerException(String message, int code) {
+		super(message);
+
+		this.code = code;
 	}
 
 }

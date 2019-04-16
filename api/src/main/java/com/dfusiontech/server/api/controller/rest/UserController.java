@@ -1,5 +1,6 @@
 package com.dfusiontech.server.api.controller.rest;
 
+import com.dfusiontech.server.model.auth.UserDetailsImpl;
 import com.dfusiontech.server.model.dto.DTOBase;
 import com.dfusiontech.server.model.dto.user.UserCreateDTO;
 import com.dfusiontech.server.model.dto.user.UserDTO;
@@ -39,7 +40,7 @@ import java.util.NoSuchElementException;
 )
 public class UserController {
 
-	static final String CONTROLLER_URI = "/api/rest/users";
+	static final String CONTROLLER_URI = "/api/users";
 
 	@Autowired
 	private UserService userService;
@@ -58,6 +59,23 @@ public class UserController {
 		List<UserListDTO> result = userService.getList();
 
 		return result;
+	}
+
+	/**
+	 * Get User details
+	 *
+	 * @return User Details
+	 */
+	@RequestMapping(method = RequestMethod.GET, value = "/self", name = "Get User details")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "authorization", value = "oAuth Access token for API calls", defaultValue = "Bearer DF0310", required = true, dataType = "string", paramType = "header")
+	})
+	public UserDTO getSelf() {
+
+		UserDetailsImpl user = userService.getCurrentUser();
+		UserDTO itemDTO = userService.getDetails(user.getUserId());
+
+		return itemDTO;
 	}
 
 	/**

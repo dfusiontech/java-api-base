@@ -8,9 +8,9 @@
 	<changeSet id="0003-update-user-role-sequences" author="Eugene A. Kalosha">
 
 		<sql>
-			ALTER SEQUENCE users_id_seq RESTART WITH 1024;
+			ALTER SEQUENCE users_id_seq RESTART WITH 65536;
 			ALTER SEQUENCE user_roles_id_seq RESTART WITH 1024;
-			ALTER SEQUENCE roles_id_seq RESTART WITH 1024;
+			ALTER SEQUENCE roles_id_seq RESTART WITH 16;
 		</sql>
 
 	</changeSet>

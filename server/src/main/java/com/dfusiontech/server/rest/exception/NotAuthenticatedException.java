@@ -1,22 +1,21 @@
 package com.dfusiontech.server.rest.exception;
 
-
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * General exception to be treated as BAD_REQUEST.
+ * General exception to be treated as UNAUTHORIZED.
  *
  * @author   Eugene A. Kalosha <ekalosha@dfusiontech.com>
  * @since    2018-10-17
  */
-@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+@ResponseStatus(value = HttpStatus.UNAUTHORIZED)
 @AllArgsConstructor
-public class BadRequestException extends ServerException {
+public class NotAuthenticatedException extends ServerException {
 
-	public BadRequestException(String message) {
-		super(message, 400);
+	public NotAuthenticatedException(String message) {
+		super(message, 401);
 	}
 
 	/**
@@ -25,7 +24,7 @@ public class BadRequestException extends ServerException {
 	 * @param message
 	 * @param code
 	 */
-	public BadRequestException(String message, int code) {
+	public NotAuthenticatedException(String message, int code) {
 		super(message, code);
 	}
 

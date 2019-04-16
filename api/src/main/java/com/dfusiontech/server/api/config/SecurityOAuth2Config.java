@@ -2,6 +2,7 @@ package com.dfusiontech.server.api.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,6 +19,7 @@ import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.ClientRegistrationException;
 import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 import java.util.Arrays;
 
@@ -64,11 +66,13 @@ public class SecurityOAuth2Config extends AuthorizationServerConfigurerAdapter {
 
 		ClientDetailsService clientDetailsService = new ClientDetailsService() {
 			@Override
-			public ClientDetails loadClientByClientId(String s) throws ClientRegistrationException {
+			public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
+
+				// Bulk Client Authentication
+				// Use predefined Client ID and Secret
 				BaseClientDetails clientDetails = new BaseClientDetails();
 
 				clientDetails.setClientId(oauthClientId);
-				// clientDetails.setClientSecret("{noop}21827392bacff");
 				clientDetails.setClientSecret(passwordEncoder.encode(oauthClientSecret));
 				clientDetails.setAccessTokenValiditySeconds(3600); // Access token to live an hour
 				clientDetails.setRefreshTokenValiditySeconds(2592000); // Refresh token to be valid for 30 days

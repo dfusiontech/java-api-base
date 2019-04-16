@@ -28,9 +28,18 @@ import java.util.*;
 public class UserCreateDTO extends DTOBase<Users> {
 
 	@ApiModelProperty(position = 1)
-	private String email;
+	private String fullName;
 
 	@ApiModelProperty(position = 2)
+	private String firstName;
+
+	@ApiModelProperty(position = 3)
+	private String lastName;
+
+	@ApiModelProperty(position = 4)
+	private String email;
+
+	@ApiModelProperty(position = 5)
 	private String passwordPlain;
 
 	/**

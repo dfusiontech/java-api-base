@@ -30,6 +30,15 @@ public class Users {
 	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
 
+	@Column(name = "full_name", nullable = true, insertable = false, updatable = false)
+	private String fullName;
+
+	@Column(name = "first_name", nullable = true)
+	private String firstName;
+
+	@Column(name = "last_name", nullable = true)
+	private String lastName;
+
 	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 
@@ -63,6 +72,9 @@ public class Users {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "credentials_expiration_date")
 	private Date credentialsExpirationDate;
+
+	@Column(name = "is_deleted")
+	private Boolean deleted;
 
 	@ManyToMany(cascade = {CascadeType.DETACH}, fetch = FetchType.LAZY)
 	@JoinTable(

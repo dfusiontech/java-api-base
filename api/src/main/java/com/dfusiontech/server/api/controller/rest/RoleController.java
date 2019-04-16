@@ -29,7 +29,7 @@ import java.util.List;
 )
 public class RoleController {
 
-	static final String CONTROLLER_URI = "/api/rest/roles";
+	static final String CONTROLLER_URI = "/api/roles";
 
 	@Autowired
 	private RoleRepository roleRepository;
