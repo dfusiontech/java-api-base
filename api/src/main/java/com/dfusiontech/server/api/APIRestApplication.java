@@ -95,6 +95,7 @@ public class APIRestApplication extends SpringBootServletInitializer {
 			" Startup Info:\n" +
 			" Local: \thttp://127.0.0.1:{}\n" +
 			" External: \thttp://{}:{}\n" +
+			" Swagger: \thttp://127.0.0.1:{}/swagger-ui.html\n" +
 			" Profiles: \t{}\n" +
 			" Database: \t{}\n" +
 			"============================================================================================= \n" +
