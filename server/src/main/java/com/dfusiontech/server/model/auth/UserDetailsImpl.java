@@ -19,6 +19,7 @@ import java.util.Collection;
  */
 public class UserDetailsImpl extends User {
 
+
 	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
 
 	@Getter

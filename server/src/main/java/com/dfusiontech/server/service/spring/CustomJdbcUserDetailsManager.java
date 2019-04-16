@@ -70,4 +70,21 @@ public class CustomJdbcUserDetailsManager extends JdbcUserDetailsManager {
 
 		return result;
 	}
+
+	/**
+	 * Get custom user details
+	 *
+	 * @param username
+	 * @param userFromUserQuery
+	 * @param combinedAuthorities
+	 * @return
+	 */
+	@Override
+	protected UserDetails createUserDetails(String username, UserDetails userFromUserQuery, List<GrantedAuthority> combinedAuthorities) {
+		// super.createUserDetails(username, userFromUserQuery, combinedAuthorities);
+
+		UserDetailsImpl userDetails = new UserDetailsImpl(userFromUserQuery, combinedAuthorities, ((UserDetailsImpl) userFromUserQuery).getUserId());
+
+		return userDetails;
+	}
 }
