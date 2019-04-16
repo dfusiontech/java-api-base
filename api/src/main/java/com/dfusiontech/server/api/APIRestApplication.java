@@ -108,6 +108,7 @@ public class APIRestApplication extends SpringBootServletInitializer {
 			environment.getProperty("server.port"),
 			applicationHost,
 			environment.getProperty("server.port"),
+			environment.getProperty("server.port"),
 			environment.getActiveProfiles(),
 			environment.getProperty("datasource.url")
 		);
