@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.GenericTypeResolver;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -99,12 +100,16 @@ public abstract class DTOBase<ENTITY> implements Serializable {
 		// Initialize items list for ENTITY Element
 		Optional.ofNullable(entities).orElse(new ArrayList<>()).forEach(entity -> {
 			try {
-				D newItem = dtoClass.newInstance();
+				D newItem = dtoClass.getDeclaredConstructor().newInstance();
 				newItem.fromEntity(entity);
 				result.add(newItem);
 			} catch (InstantiationException exception) {
 				exception.printStackTrace();
 			} catch (IllegalAccessException exception) {
+				exception.printStackTrace();
+			} catch (NoSuchMethodException exception) {
+				exception.printStackTrace();
+			} catch (InvocationTargetException exception) {
 				exception.printStackTrace();
 			}
 		});
