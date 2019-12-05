@@ -45,13 +45,14 @@
 
 		<!--Dependencies versions-->
 		<logback.version>1.1.3</logback.version>
-		<javax-persistence.version>2.0.0</javax-persistence.version>
+		<javax-persistence.version>2.2</javax-persistence.version>
 		<jaxb-api.version>2.3.0</jaxb-api.version>
+		<javassist.version>3.26.0-GA</javassist.version>
 		<jaxb-runtime.version>2.4.0-b180830.0438</jaxb-runtime.version>
 		<hibernate-orm.version>5.3.6.Final</hibernate-orm.version>
 		<postgresql.version>42.2.5</postgresql.version>
 
-		<spring.boot.version>2.0.5.RELEASE</spring.boot.version>
+		<spring.boot.version>2.2.0.RELEASE</spring.boot.version>
 		<spring.security.version>5.1.1.RELEASE</spring.security.version>
 		<spring.security.oauth2.version>2.3.4.RELEASE</spring.security.oauth2.version>
 

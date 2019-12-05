@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
 
-	<changeSet id="0001-create-users-table" author="Eugene A. Kalosha">
+	<changeSet id="0002.oauth2" author="Eugene A. Kalosha">
 
 		<sql>
 			drop table if exists oauth_access_token;

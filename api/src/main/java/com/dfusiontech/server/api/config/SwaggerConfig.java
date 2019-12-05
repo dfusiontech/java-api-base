@@ -1,4 +1,4 @@
-package com.dfusiontech.server.api.config.swagger;
+package com.dfusiontech.server.api.config;
 
 
 import com.dfusiontech.server.rest.ApplicationProperties;
@@ -7,16 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger.web.SecurityConfiguration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
@@ -26,7 +24,7 @@ import java.util.List;
 @Configuration
 @EnableSwagger2
 @PropertySource(name = "swagger", value = "classpath:swagger.properties")
-public class SwaggerConfig extends WebMvcConfigurerAdapter {
+public class SwaggerConfig implements WebMvcConfigurer {
 
 	private final ApplicationProperties properties;
 
@@ -72,17 +70,6 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
 					.contact(new Contact("Eugene A. Kalosha", "https://dfusiontech.com", "ekalosha@dfusiontech.com"))
 					.build()
 			);
-	}
-
-
-	@Bean
-	public SwaggerMapperConfig swaggerMapper() {
-		return new SwaggerMapperConfig();
-	}
-
-	@Bean
-	public SecurityConfiguration securityConfiguration() {
-		return new SwaggerSecurityConfig(HttpHeaders.AUTHORIZATION);
 	}
 
 	/**
