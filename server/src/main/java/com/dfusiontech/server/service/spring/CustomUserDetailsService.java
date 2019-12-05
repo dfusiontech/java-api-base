@@ -1,5 +1,6 @@
 package com.dfusiontech.server.service.spring;
 
+import com.dfusiontech.server.util.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,8 +33,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
-		User result = new User(userName, "password", Collections.EMPTY_LIST);
+		// We must recreate User Properly. Like it is done in Spring.
+		CustomJdbcUserDetailsManager userDetailsManager = BeanUtil.getBean("customJdbcUserDetailsManager", CustomJdbcUserDetailsManager.class);
+		UserDetails userDetails = userDetailsManager.loadUserByUsername(userName);
 
-		return result;
+		return userDetails;
 	}
 }
