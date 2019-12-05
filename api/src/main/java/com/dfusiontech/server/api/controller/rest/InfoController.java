@@ -3,6 +3,7 @@ package com.dfusiontech.server.api.controller.rest;
 import com.dfusiontech.server.rest.ApplicationProperties;
 import com.dfusiontech.server.rest.exception.ApplicationExceptionCodes;
 import com.dfusiontech.server.rest.exception.BadRequestException;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -34,6 +35,7 @@ import java.util.stream.Collectors;
 	name = "Common Info"
 )
 @Slf4j
+@Api(tags = "API Info")
 public class InfoController {
 
 	static final String CONTROLLER_URI = "/api/info";

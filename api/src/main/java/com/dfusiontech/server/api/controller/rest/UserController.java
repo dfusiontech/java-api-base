@@ -10,6 +10,7 @@ import com.dfusiontech.server.model.jpa.entity.Users;
 import com.dfusiontech.server.repository.jpa.UserRepository;
 import com.dfusiontech.server.rest.exception.ItemNotFoundException;
 import com.dfusiontech.server.service.UserService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiParam;
@@ -38,6 +39,7 @@ import java.util.NoSuchElementException;
 	produces = MediaType.APPLICATION_JSON,
 	name = "Users Management Controller"
 )
+@Api(tags = {"User Management", "Administration"})
 public class UserController {
 
 	static final String CONTROLLER_URI = "/api/users";

@@ -3,6 +3,7 @@ package com.dfusiontech.server.api.controller.rest;
 import com.dfusiontech.server.model.dto.role.RoleListDTO;
 import com.dfusiontech.server.model.jpa.entity.Roles;
 import com.dfusiontech.server.repository.jpa.RoleRepository;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ import java.util.List;
 	produces = MediaType.APPLICATION_JSON,
 	name = "Roles Management Controller"
 )
+@Api(tags = {"Role Viewer", "Administration"})
 public class RoleController {
 
 	static final String CONTROLLER_URI = "/api/roles";
