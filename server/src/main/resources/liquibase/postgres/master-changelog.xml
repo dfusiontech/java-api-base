@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<include file="classpath:liquibase/postgres/0001.users_and_roles.xml" relativeToChangelogFile="false" />
+	<include file="classpath:liquibase/postgres/0002.oauth2.xml" relativeToChangelogFile="false" />
+	<include file="classpath:liquibase/postgres/0003.users_sequences.xml" relativeToChangelogFile="false" />
+	<include file="classpath:liquibase/postgres/0004.user_password_reset_links.xml" relativeToChangelogFile="false" />
+	<include file="classpath:liquibase/postgres/0005.location_country_state.xml" relativeToChangelogFile="false" />
+	<include file="classpath:liquibase/postgres/0006.continents_data.xml" relativeToChangelogFile="false" />
+	<include file="classpath:liquibase/postgres/0007.countries_data.xml" relativeToChangelogFile="false" />
+	<include file="classpath:liquibase/postgres/0008.states_data.xml" relativeToChangelogFile="false" />
+	<include file="classpath:liquibase/postgres/0009.cities_data.xml" relativeToChangelogFile="false" />
+	<include file="classpath:liquibase/postgres/0010.languages.xml" relativeToChangelogFile="false" />
+	<include file="classpath:liquibase/postgres/0011.languages_data.xml" relativeToChangelogFile="false" />
+	<include file="classpath:liquibase/postgres/0012.currencies.xml" relativeToChangelogFile="false" />
+	<include file="classpath:liquibase/postgres/0013.currencies_data.xml" relativeToChangelogFile="false" />
+
+</databaseChangeLog>

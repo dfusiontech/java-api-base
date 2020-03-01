@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0001.users_and_roles" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE users
+			(
+				id serial,
+				first_name character varying (128) DEFAULT NULL,
+				last_name character varying (128) DEFAULT NULL,
+				email character varying (128) NOT NULL,
+				password character varying (65) DEFAULT NULL,
+				enabled boolean default true,
+				expired boolean default false,
+				credentials_expired boolean default false,
+				locked boolean default false,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				expiration_date timestamp without time zone DEFAULT NULL,
+				credentials_expiration_date timestamp without time zone DEFAULT NULL,
+				is_deleted boolean NOT NULL DEFAULT false,
+				full_name varchar(255) DEFAULT '',
+				CONSTRAINT pk_users PRIMARY KEY (id)
+			);
+
+			CREATE UNIQUE INDEX ui_users_email ON users (email);
+			CREATE INDEX i_users_first_name ON users (first_name);
+			CREATE INDEX i_users_last_name ON users (last_name);
+			CREATE INDEX i_users_created_at ON users (created_at);
+			CREATE INDEX i_users_updated_at ON users (updated_at);
+
+			CREATE INDEX i_user_full_name ON users (full_name);
+			CREATE INDEX i_user_full_name_deleted ON users (full_name, is_deleted);
+			CREATE INDEX i_user_deleted ON users (is_deleted);
+
+			INSERT INTO users (id, email, password) VALUES (1, 'admin@email.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba');
+			INSERT INTO users (id, email, password) VALUES (2, 'user@email.com', '$2a$10$jfGpG/nQzkQ6VY2vk06OeOlw8C1qCEcnIFJvc6hlxn1jSJGhp56Ba');
+
+			CREATE TABLE roles
+			(
+				id serial,
+				name character varying (8) NOT NULL,
+				description character varying (65) DEFAULT NULL,
+				CONSTRAINT pk_roles PRIMARY KEY (id)
+			);
+			CREATE UNIQUE INDEX ui_roles_name ON roles (name);
+
+			INSERT INTO roles (id, name, description) VALUES (1, 'ADMIN', 'System Administrators');
+			-- INSERT INTO roles (id, name, description) VALUES (2, 'ANONYMOUS', 'Anonymous users');
+			INSERT INTO roles (id, name, description) VALUES (4, 'USER', 'Users of the system');
+
+			CREATE TABLE user_roles
+			(
+				id serial,
+				user_id integer NOT NULL,
+				role_id integer NOT NULL,
+				created_at timestamp without time zone NOT NULL DEFAULT now(),
+				updated_at timestamp without time zone NOT NULL DEFAULT now(),
+				CONSTRAINT pk_user_roles PRIMARY KEY (id),
+				CONSTRAINT fk_user_roles_to_users FOREIGN KEY (user_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE,
+				CONSTRAINT fk_user_roles_to_roles FOREIGN KEY (role_id) REFERENCES roles (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+			);
+			CREATE UNIQUE INDEX ui_user_roles ON user_roles (user_id, role_id);
+			CREATE INDEX ui_user_roles_user_id ON user_roles (user_id);
+			CREATE INDEX ui_user_roles_role_id ON user_roles (role_id);
+
+			INSERT INTO user_roles (user_id, role_id) VALUES (1, 1);
+			INSERT INTO user_roles (user_id, role_id) VALUES (1, 4);
+			INSERT INTO user_roles (user_id, role_id) VALUES (2, 4);
+
+		</sql>
+
+		<rollback>
+			<dropTable tableName="user_roles"/>
+			<dropTable tableName="roles"/>
+			<dropTable tableName="users"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

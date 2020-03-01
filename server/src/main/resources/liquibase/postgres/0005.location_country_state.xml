@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0005.location_country_state" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE continents
+			(
+				id serial,
+				code character varying (3) NOT NULL,
+				name character varying (65) DEFAULT NULL,
+				CONSTRAINT pk_continents PRIMARY KEY (id)
+			);
+			CREATE UNIQUE INDEX ui_continents_code ON continents (code);
+			CREATE UNIQUE INDEX ui_continents_name ON continents (name);
+
+			CREATE TABLE countries
+			(
+				id serial,
+				continent_id integer DEFAULT NULL,
+				country_name character varying (65) DEFAULT NULL,
+				country_code character varying (3) NOT NULL,
+				phone_code character varying (7) DEFAULT NULL,
+				CONSTRAINT pk_countries PRIMARY KEY (id),
+				CONSTRAINT fk_countries_to_continents FOREIGN KEY (continent_id) REFERENCES continents (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE UNIQUE INDEX ui_countries_code ON countries (country_code);
+			CREATE UNIQUE INDEX ui_countries_name ON countries (country_name);
+			CREATE INDEX i_countries_phone_code ON countries (phone_code);
+			CREATE INDEX i_countries_continent_id ON countries (continent_id);
+
+			CREATE TABLE states
+			(
+				id serial,
+				country_id integer NOT NULL,
+				state_name character varying (65) NOT NULL,
+				state_code character varying (3) DEFAULT NULL,
+				CONSTRAINT pk_states PRIMARY KEY (id),
+				CONSTRAINT fk_states_to_countries FOREIGN KEY (country_id) REFERENCES countries (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE UNIQUE INDEX ui_states_name_country ON states (country_id, state_name);
+			CREATE INDEX i_state_country_id ON states (country_id);
+			CREATE INDEX i_state_name ON states (state_name);
+
+			CREATE TABLE cities
+			(
+				id serial,
+				country_id integer NOT NULL,
+				state_id integer DEFAULT NULL,
+				city_name character varying (65) NOT NULL,
+				population integer DEFAULT NULL,
+				latitude float DEFAULT NULL,
+				longitude float DEFAULT NULL,
+				CONSTRAINT pk_cities PRIMARY KEY (id),
+				CONSTRAINT fk_cities_to_countries FOREIGN KEY (country_id) REFERENCES countries (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION,
+				CONSTRAINT fk_cities_to_states FOREIGN KEY (state_id) REFERENCES states (id) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
+			);
+			CREATE INDEX i_city_country_id ON cities (country_id);
+			CREATE INDEX i_city_state_id ON cities (state_id);
+			CREATE INDEX i_city_country_state ON cities (country_id, state_id);
+			CREATE INDEX i_city_name ON cities (city_name);
+
+		</sql>
+
+		<rollback>
+			<dropTable tableName="cities"/>
+			<dropTable tableName="states"/>
+			<dropTable tableName="countries"/>
+			<dropTable tableName="continents"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

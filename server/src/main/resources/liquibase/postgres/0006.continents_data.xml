@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0006.continents_data" author="Eugene A. Kalosha">
+
+		<sql>
+			INSERT INTO continents VALUES
+			  (1,'AF','Africa')
+			, (2,'AN','Antarctica')
+			, (3,'AS','Asia')
+			, (4,'EU','Europe')
+			, (5,'NA','North America')
+			, (6,'OC','Australia and Oceania')
+			, (7,'SA','South America')
+			;
+
+			ALTER SEQUENCE continents_id_seq RESTART WITH 8;
+		</sql>
+
+		<rollback>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

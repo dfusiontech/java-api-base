@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0012.currencies" author="Eugene A. Kalosha">
+
+		<sql>
+			CREATE TABLE currencies
+			(
+				id serial,
+				name character varying (63) DEFAULT NULL,
+				code character varying (6) NOT NULL,
+				symbol character varying (6) DEFAULT NULL,
+				CONSTRAINT pk_currencies PRIMARY KEY (id)
+			);
+			CREATE UNIQUE INDEX ui_currencies_code ON currencies (code);
+			CREATE INDEX i_currencies_name ON currencies (name);
+
+		</sql>
+
+		<rollback>
+			<dropTable tableName="currencies"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

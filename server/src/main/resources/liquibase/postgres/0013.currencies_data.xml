@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0012-currencies-data" author="Eugene A. Kalosha">
+
+		<sql>
+
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (1, 'Leke', 'ALL', 'Lek');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (2, 'Dollars', 'USD', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (3, 'Afghanis', 'AFN', '؋');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (4, 'Pesos', 'ARS', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (5, 'Guilders', 'AWG', 'ƒ');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (6, 'Dollars', 'AUD', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (7, 'New Manats', 'AZN', 'ман');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (8, 'Dollars', 'BSD', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (9, 'Dollars', 'BBD', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (10, 'Rubles', 'BYR', 'p.');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (11, 'Euro', 'EUR', '€');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (12, 'Dollars', 'BZD', 'BZ$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (13, 'Dollars', 'BMD', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (14, 'Bolivianos', 'BOB', '$b');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (15, 'Convertible Marka', 'BAM', 'KM');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (16, 'Pula', 'BWP', 'P');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (17, 'Leva', 'BGN', 'лв');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (18, 'Reais', 'BRL', 'R$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (19, 'Pounds', 'GBP', '£');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (20, 'Dollars', 'BND', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (21, 'Riels', 'KHR', '៛');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (22, 'Dollars', 'CAD', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (23, 'Dollars', 'KYD', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (24, 'Pesos', 'CLP', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (25, 'Yuan Renminbi', 'CNY', '¥');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (26, 'Pesos', 'COP', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (27, 'Colón', 'CRC', '₡');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (28, 'Kuna', 'HRK', 'kn');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (29, 'Pesos', 'CUP', '₱');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (30, 'Koruny', 'CZK', 'Kč');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (31, 'Kroner', 'DKK', 'kr');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (32, 'Pesos', 'DOP ', 'RD$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (33, 'Dollars', 'XCD', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (34, 'Pounds', 'EGP', '£');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (35, 'Colones', 'SVC', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (36, 'Pounds', 'FKP', '£');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (37, 'Dollars', 'FJD', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (38, 'Cedis', 'GHC', '¢');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (39, 'Pounds', 'GIP', '£');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (40, 'Quetzales', 'GTQ', 'Q');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (41, 'Pounds', 'GGP', '£');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (42, 'Dollars', 'GYD', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (43, 'Lempiras', 'HNL', 'L');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (44, 'Dollars', 'HKD', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (45, 'Forint', 'HUF', 'Ft');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (46, 'Kronur', 'ISK', 'kr');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (47, 'Rupees', 'INR', 'Rp');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (48, 'Rupiahs', 'IDR', 'Rp');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (49, 'Rials', 'IRR', '﷼');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (50, 'Pounds', 'IMP', '£');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (51, 'New Shekels', 'ILS', '₪');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (52, 'Dollars', 'JMD', 'J$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (53, 'Yen', 'JPY', '¥');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (54, 'Pounds', 'JEP', '£');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (55, 'Tenge', 'KZT', 'лв');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (56, 'Won', 'KPW', '₩');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (57, 'Won', 'KRW', '₩');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (58, 'Soms', 'KGS', 'лв');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (59, 'Kips', 'LAK', '₭');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (60, 'Lati', 'LVL', 'Ls');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (61, 'Pounds', 'LBP', '£');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (62, 'Dollars', 'LRD', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (63, 'Switzerland Francs', 'CHF', 'CHF');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (64, 'Litai', 'LTL', 'Lt');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (65, 'Denars', 'MKD', 'ден');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (66, 'Ringgits', 'MYR', 'RM');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (67, 'Rupees', 'MUR', '₨');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (68, 'Pesos', 'MXN', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (69, 'Tugriks', 'MNT', '₮');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (70, 'Meticais', 'MZN', 'MT');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (71, 'Dollars', 'NAD', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (72, 'Rupees', 'NPR', '₨');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (73, 'Guilders', 'ANG', 'ƒ');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (74, 'Dollars', 'NZD', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (75, 'Cordobas', 'NIO', 'C$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (76, 'Nairas', 'NGN', '₦');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (77, 'Krone', 'NOK', 'kr');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (78, 'Rials', 'OMR', '﷼');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (79, 'Rupees', 'PKR', '₨');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (80, 'Balboa', 'PAB', 'B/.');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (81, 'Guarani', 'PYG', 'Gs');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (82, 'Nuevos Soles', 'PEN', 'S/.');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (83, 'Pesos', 'PHP', 'Php');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (84, 'Zlotych', 'PLN', 'zł');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (85, 'Rials', 'QAR', '﷼');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (86, 'New Lei', 'RON', 'lei');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (87, 'Rubles', 'RUB', 'руб');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (88, 'Pounds', 'SHP', '£');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (89, 'Riyals', 'SAR', '﷼');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (90, 'Dinars', 'RSD', 'Дин.');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (91, 'Rupees', 'SCR', '₨');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (92, 'Dollars', 'SGD', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (93, 'Dollars', 'SBD', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (94, 'Shillings', 'SOS', 'S');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (95, 'Rand', 'ZAR', 'R');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (96, 'Rupees', 'LKR', '₨');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (97, 'Kronor', 'SEK', 'kr');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (98, 'Dollars', 'SRD', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (99, 'Pounds', 'SYP', '£');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (100, 'New Dollars', 'TWD', 'NT$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (101, 'Baht', 'THB', '฿');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (102, 'Dollars', 'TTD', 'TT$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (103, 'Lira', 'TRY', 'TL');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (104, 'Liras', 'TRL', '£');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (105, 'Dollars', 'TVD', '$');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (106, 'Hryvnia', 'UAH', '₴');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (107, 'Pesos', 'UYU', '$U');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (108, 'Sums', 'UZS', 'лв');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (109, 'Bolivares Fuertes', 'VEF', 'Bs');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (110, 'Dong', 'VND', '₫');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (111, 'Rials', 'YER', '﷼');
+INSERT INTO public.currencies (id, name, code, symbol) VALUES (112, 'Zimbabwe Dollars', 'ZWD', 'Z$');
+
+			ALTER SEQUENCE currencies_id_seq RESTART WITH 113;
+		</sql>
+
+		<rollback>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

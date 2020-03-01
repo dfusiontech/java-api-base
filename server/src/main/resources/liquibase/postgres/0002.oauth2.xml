@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+	<changeSet id="0002.oauth2" author="Eugene A. Kalosha">
+
+		<sql>
+			drop table if exists oauth_access_token;
+			create table oauth_access_token (
+				token_id VARCHAR(256) PRIMARY KEY,
+				token bytea,
+				authentication_id VARCHAR(256),
+				user_name VARCHAR(256),
+				client_id VARCHAR(256),
+				authentication bytea,
+				refresh_token VARCHAR(256)
+			);
+			CREATE UNIQUE INDEX ui_oauth_access_token_id ON oauth_access_token (token_id);
+			CREATE INDEX i_oauth_access_token_authentication_id ON oauth_access_token (authentication_id);
+			CREATE INDEX i_oauth_access_token_user_name ON oauth_access_token (user_name);
+			CREATE INDEX i_oauth_access_token_client_id ON oauth_access_token (client_id);
+
+			drop table if exists oauth_refresh_token;
+			create table oauth_refresh_token (
+				token_id VARCHAR(256) PRIMARY KEY,
+				token bytea,
+				authentication bytea
+			);
+			CREATE UNIQUE INDEX ui_oauth_refresh_token_id ON oauth_access_token (token_id);
+		</sql>
+
+		<rollback>
+			<dropTable tableName="oauth_access_token"/>
+			<dropTable tableName="oauth_refresh_token"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>api-base</artifactId>
+	<groupId>com.dfusiontech</groupId>
+	<packaging>pom</packaging>
+	<name>dFusion Tech Applications</name>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<!-- Spring Boot parent -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.5.RELEASE</version>
+		<relativePath/>
+	</parent>
+
+	<modules>
+		<module>server</module>
+		<module>api</module>
+	</modules>
+
+	<properties>
+		<java.version>11</java.version>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!--Plugins versions-->
+		<plugin.maven-compiler.version>3.8.0</plugin.maven-compiler.version>
+		<plugin.maven-war.version>3.1.0</plugin.maven-war.version>
+		<plugin.maven-jar.version>3.1.0</plugin.maven-jar.version>
+		<plugin.maven-resources.version>3.1.0</plugin.maven-resources.version>
+		<plugin.surefire.version>2.22.0</plugin.surefire.version>
+		<plugin.checkstyle.version>2.15</plugin.checkstyle.version>
+		<plugin.cobertura.version>2.7</plugin.cobertura.version>
+		<plugin.maven-reporting.version>2.8</plugin.maven-reporting.version>
+
+		<failOnMissingWebXml>false</failOnMissingWebXml>
+		<servlet.version>3.1.0</servlet.version>
+
+		<!--Dependencies versions-->
+		<logback.version>1.1.3</logback.version>
+		<javax-persistence.version>2.2</javax-persistence.version>
+		<jaxb-api.version>2.3.0</jaxb-api.version>
+		<javassist.version>3.26.0-GA</javassist.version>
+		<jaxb-runtime.version>2.4.0-b180830.0438</jaxb-runtime.version>
+		<hibernate-orm.version>5.3.6.Final</hibernate-orm.version>
+		<postgresql.version>42.2.5</postgresql.version>
+
+		<spring.boot.version>2.2.0.RELEASE</spring.boot.version>
+		<spring.security.version>5.1.1.RELEASE</spring.security.version>
+		<spring.security.oauth2.version>2.3.4.RELEASE</spring.security.oauth2.version>
+
+		<!-- Joda date time dependencies -->
+		<joda.version>2.9.1</joda.version>
+		<jadira.version>6.0.0.GA</jadira.version>
+
+		<!-- Code generation utils -->
+		<lombock.version>1.18.2</lombock.version>
+
+		<hikari.version>3.2.0</hikari.version>
+		<hsqldb.version>2.4.0</hsqldb.version>
+		<liquibase.version>3.5.3</liquibase.version>
+
+		<!--Swagger dependencies-->
+		<!-- swagger.version>2.0.0-rc2</swagger.version -->
+		<swagger.version>1.5.21</swagger.version>
+		<springfox.version>2.9.2</springfox.version>
+
+		<apache.commons-lang3.version>3.7</apache.commons-lang3.version>
+		<apache.commons-codec.version>1.11</apache.commons-codec.version>
+		<apache.commons-io.version>2.6</apache.commons-io.version>
+		<modelmapper.version>2.3.0</modelmapper.version>
+
+		<maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
+
+		<activemq.version>5.15.4</activemq.version>
+		<javax.ws-rs-api.version>2.1.1</javax.ws-rs-api.version>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>snapshot</id>
+			<url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
+		</repository>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.22.0</version>
+				<configuration>
+					<argLine>
+						--illegal-access=permit
+					</argLine>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<generateBackupPoms>false</generateBackupPoms>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${plugin.maven-jar.version}</version>
+			</plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${plugin.maven-compiler.version}</version>
+					<configuration>
+						<release>${java.version}</release>
+					</configuration>
+					<!--
+					<dependencies>
+						<dependency>
+							<groupId>org.ow2.asm</groupId>
+							<artifactId>asm</artifactId>
+							<version>6.2.1</version>
+						</dependency>
+					</dependencies>
+					-->
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>no-unit-tests</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${plugin.surefire.version}</version>
+						<configuration>
+							<skipTests>true</skipTests>
+							<argLine>-Xmx4G</argLine>
+							<argLine>
+								--illegal-access=permit
+							</argLine>
+						</configuration>
+						<!--
+						<dependencies>
+							<dependency>
+								<groupId>org.ow2.asm</groupId>
+								<artifactId>asm</artifactId>
+								<version>6.2.1</version>
+							</dependency>
+						</dependencies>
+						-->
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<dependencyManagement>
+		<dependencies>
+		</dependencies>
+	</dependencyManagement>
+
+</project>
